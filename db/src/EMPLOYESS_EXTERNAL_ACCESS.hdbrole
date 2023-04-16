@@ -1,0 +1,13 @@
+{
+    "role": {
+        "name": "EMPLOYEES_EXTERNAL_ACCESS",
+        "object_privileges": [
+            { 
+                "name":"MY_BOOKSHOP_EMPLOYEES", 
+                "type":"TABLE", 
+                "privileges":[ "SELECT" ], 
+                "privileges_with_grant_option":[] 
+            }                          
+        ]
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "REMOTE_OBJECTS": {
+    "object_owner": {
+      "roles": ["REMOTE_ACCESS_ROLE"]
+    },
+    "application_user": {
+        "roles": ["REMOTE_ACCESS_ROLE"]
+    }
+  }
+}

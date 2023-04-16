@@ -1,0 +1,8 @@
+{
+  "MY_BOOKSHOP_REMOTE_TABLE": {
+    "target": {
+      "object": "REMOTE_TABLE",
+      "schema": "DBADMIN"
+    }
+  }
+}

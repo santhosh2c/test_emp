@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="WORKER_CV" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="AUTO" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="WORKER_CV"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MY_BOOKSHOP_EMPLOYEES">
+    <resourceUri>MY_BOOKSHOP_EMPLOYEES</resourceUri>
+  </DataSource>
+  <DataSource id="MY_BOOKSHOP_BOOKS">
+    <resourceUri>MY_BOOKSHOP_BOOKS</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView id="Join_1">
+    <viewAttributes/>
+    <calculatedViewAttributes/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="SCORE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MY_BOOKSHOP_EMPLOYEES"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_2">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="TITLE"/>
+      <viewAttribute id="STOCK"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MY_BOOKSHOP_BOOKS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="TITLE"/>
+      <viewAttribute id="STOCK"/>
+      <viewAttribute id="ID_1"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="SCORE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Rank_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TITLE" source="TITLE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STOCK" source="STOCK"/>
+    </input>
+    <input node="Rank_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_1" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SCORE" source="SCORE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+    </input>
+    <joinAttribute name="ID"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_2">
+  <attributes>
+    <attribute id="ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Join_2" columnName="ID"/>
+    </attribute>
+    <attribute id="TITLE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TITLE"/>
+      <keyMapping columnObjectName="Join_2" columnName="TITLE"/>
+    </attribute>
+    <attribute id="STOCK" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STOCK"/>
+      <keyMapping columnObjectName="Join_2" columnName="STOCK"/>
+    </attribute>
+    <attribute id="ID_1" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID_1"/>
+      <keyMapping columnObjectName="Join_2" columnName="ID_1"/>
+    </attribute>
+    <attribute id="NAME" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME"/>
+      <keyMapping columnObjectName="Join_2" columnName="NAME"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="100" y="105"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="192"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-60" y="400"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Rank_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="280" y="400"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="107" y="286"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Rank_2" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="106"/>
+    </shape>
+    <shape modelObjectName="Rank_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="106"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
